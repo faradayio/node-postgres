@@ -15,6 +15,12 @@ p.write = function(packet) {
   this.packets.push(packet);
 };
 
+p.end = function (packet) {
+  if (packet) this.write(packet);
+  this.writable = false;
+  this.ended = this.finished = true;
+}
+
 p.writable = true;
 
 createClient = function() {
